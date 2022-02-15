@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.tc.asciidoctor</groupId>
+  <artifactId>tc-clean-code</artifactId>
+  <version>0.1.0</version>
+  <name>${project.artifactId}-${project.version}</name>
+  <description>Article sur clean code</description>
+  <parent>
+    <groupId>org.tc.parent</groupId>
+    <artifactId>tc-asciidoctor-html-parent</artifactId>
+    <version>0.2.0</version>
+  </parent>
+  <!--Attention compatible qu'avec maven utilisant Java 8 -->
+    <!-- mvn clean process-resources -s settings.xml-->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.googlecode.maven-download-plugin</groupId>
+        <artifactId>download-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+</project>

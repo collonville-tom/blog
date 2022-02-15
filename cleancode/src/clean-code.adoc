@@ -1,0 +1,454 @@
+= Clean code       
+:customcss: template-pres.css                                                      
+Collonville Thomas                                     
+Version 0.1.0, 02/02/2022                                             
+
+[quote, Robert Heinlein]
+When one teach, two learn
+
+:sectnums:                                                          
+:toc:                                                           
+:toclevels: 4                                                       
+:toc-title: Plan                                              
+:description: Clean Code                        
+:keywords: clean code, Robert C Martin                                                 
+:imagesdir: ./img       
+:source-highlighter: pygments
+:pygments-style: emacs
+:icons: font
+:nofooter:
+
+ifeval::["{backend}"=="html5"]
+:article:
+endif::[]
+ifeval::["{backend}"=="pdf"]
+:article:
+endif::[]
+ifeval::["{backend}"=="revealjs"]
+:presentation:
+endif::[]
+
+ifdef::presentation[]
+
+== Plan
+
+* Problematique du developpement logiciel
+* Pourquoi Clean Code
+* Nature du Clean Code
+* Les pratiques Clean Code
+** SOLID
+** Egoless
+** Boyscout
+** Nommage
+
+=== Plan
+
+** Fonctions
+** Classes
+** Commentaires
+** Formatage
+** Demeter
+** Build
+** Gitflow
+** Erreurs
+** Frontieres
+** Tests
+
+== Problematique du developpement logiciel
+
+* Long (plusieurs mois/années)
+* Difficile (necessite methodes, organisations, etc.)
+* Complexe (multiples interconnexions de systemes)
+* Incertain (la connaissance a toujours tendance a s'evaporer)
+* Implique de nombreux acteurs 
+* Implique de nombreux vecteurs de communication
+
+== Pourquoi Clean Code
+
+* Ameliorer la confiance
+* Garantir le fonctionnement
+* Maintenir la connaissance
+* Assurer la qualité
+* Péreniser
+* Maitriser les couts et le temps passé
+* Diminuer le nombre de WTF/min 
+
+== Clean Code
+
+===  Nature
+
+* Demarche (TDD, SOLID, Yagni, KISS, etc..;)
+* Mindset (egoless, CNV, esprit d'equipe, pédagogie)
+* Tips
+* Travail (supplementaire)
+* Orienté Equipe: "Pourquoi je fais les choses d’une certaines façon et est ce que cela est profitable à l’équipe d’aujourd’hui et à celle de demain"
+
+=== Avis des pro
+
+* Bjarne Stroustrup : « élégant et efficace », « simple », « dépendance doivent être minime », « un code propre fait une chose et le fait bien »
+* Grady Booch : « simple et direct », « ne cache pas les intentions du concepteur », « abstractions nettes »
+* Dave Thomas : « peut être lu et améliorer », « TU et Test de recettes », « noms significatifs » « une seule manière de réaliser une chose », « dépendances minimales et explicites », « API claire et minimale »
+* Micheal Feathers : « réalisé avec soin », « pas d’amélioration possible évidente »
+* Ron Jeffries : « passe les tests », « n’est pas redondant », « exprime les idées de conception », « minimise les entités », « expressivité », « noms significatifs », « abstraire la spécificité »
+* Ward Cunningham : « chaque méthodes correspond a ce que vous attendiez »
+
+=== De maniere générale
+
+* élégant
+* simple
+* évident
+* minimise les concepts (entités et dépendances)
+* SRP (lignes/classes/méthodes/packages)
+* munie d’abstractions nettes
+* expressif (utilise des noms significatifs)
+* soigné
+* organisé
+* contenant des tests (aussi soigné sinon plus que le code)
+
+== Les pratiques Clean Code
+
+== SOLID
+
+* S pour Single Responsibility Principle
+* une seul préoccupation 
+* une seule problématique
+* généralisable en l’adaptant au niveau d’abstraction considéré
+
+=== SOLID
+
+* O pour Open/closed principle. 
+* ne doit pas en permettre la modification pour respecter S. 
+* doit permettre et faciliter son extension (héritage ou d’encapsulation)
+
+=== SOLID
+
+* L pour Liskov principle. Rarement violé (sauf dans les langages ou l’on peut facilement manipuler la meta-structure) 
+* les sous types d’une entité continue de respecter le contrat de base de celle ci
+* garanti la substitution d’une entité par l’un de ses sous types
+
+=== SOLID
+
+* I pour Interface segregation principle. 
+* une interface ne gere qu'un aspect
+* garanti la stabilité
+* garanti la maintenabilité 
+* decouplage
+
+=== SOLID
+
+* D pour Dependency inversion principle 
+* gestion de l'orientation des dépendances
+* facilite la réorganisation et la substitution 
+
+== Ne pas jouer au heros, egoless programming
+
+* responsabilité individuelle pour le projet
+* responsabilité individuelle vis a vis de l'equipe
+* penser equipe, toujours equipe
+* porter les valeurs et choix d'equipe
+* definition de pratiques d'equipe
+* ne pas diverger des pratiques d'equipe
+* YAGNI
+* KISS
+
+== Boy-scout rule
+
+* Metaphore : « Laissez les toilettes plus propre qu’avant votre passage »
+* impossibilité d'etre parfait
+* Clean code == Process iteratif d'amelioration continu
+
+== Noms significatifs
+
+* élément important dans le clean code
+* concerne: variables, méthodes, classes package 
+* explicite
+* évidente
+* prononçable
+* simple (et compatible avec la recherche)
+* unique conceptuellement 
+* la lecture ou la manipulation ne soit pas un effort ni source de confusion
+
+=== Noms significatifs
+
+* temps d’écriture du code faible versus temps de lecture enorme 
+* eclaire la compréhension et l'intentions 
+* nommage = langage du DSL 
+* distinction claire entre le technique et le fonctionnel
+* eviter le nomage generique (classe Manager ou Processor)
+* pas de codification
+* pas de jeu d'esprit ou d'originalité ou culturel
+* respect des standards
+
+== Les fonctions
+
+* loi de Miller
+* un seul rôle et responsabilité
+* un seul niveau d’abstraction 
+* organisées des plus abstraites au plus spécifiques 
+* contenu organisé par groupe logique 
+* déclarations de variable au plus proche de leur utilisation
+* eviter le switch cases (structure lourde)
+* minimiser le nombre d'args (signe d'un souvis de responsabilité)
+
+== Les classes
+
+* simples
+* petites 
+* une seule responsabilité
+* utilisation de patterns (complexité, evolutivité)
+* factoriser le code
+* supprimer le code inutile -> Git existe
+
+=== Les classes
+
+* dissociassion des préoccupations 
+** démarrage
+** fonctionnement nominal
+** fonctionnement en cas d’erreur 
+** fonctionnement en cas arrêt
+
+== return, continue et break
+
+* ne pas utiliser continue et break
+* ne pas répéter dans une meme méthode le mot clef return
+** vrai si la methode est longue 
+** sinon pourquoi pas si ca clarifie
+
+== Les commentaires
+
+* la problématique du commentaire est un chapitre complet du livre Clean code 
+* Ce chapitre commence par :
+
+    Ne commentez pas le mauvais code, reecrivez le.
+
+* utile que lorsqu’il pallie notre incapacité à exprimer notre intention par le code
+* Ne pas laisser du code commenté, git existe
+* maintenance illusoire 
+* confiance impossible
+* implique une facon de faire
+* mensonge et point de vue
+* alourdissement de la lecture
+
+=== Les commentaires
+
+* de manière général:
+** langage formel versus langage naturel
+** inutile 
+** revoir le code 
+** si utile -> c’est un pansement
+** créer une fonction bien nommé pour wrapper
+
+== La java doc
+
+* type de documention specfique
+** a destination de developpeurs
+** objectif d'utilisation d'un framework
+** pas un objectif de documentation pour un mainteneur (le code fait foi)
+
+== Le formatage
+
+* Homogéne (organisation package/classe/methode)
+* le diable se cache dans les details
+* s'appuyer sur les standards
+* l'objectif est la lisibilité
+* Utiliser les memes patterns d'ecriture
+* pas d'habitudes individuelles
+
+== Loi de Demeter
+
+La loi de Demeter stipule qu’un objet ou fonction n’a le droit de manipuler 
+que les éléments qu’il est sensé directement connaitre.
+
+[source ,java]
+----
+resident.getHouse().getOwner().isSleeping()
+----
+
+* limiter la dépendance entre les entités
+* violation de l'encapsulation
+* lecture des log en cas de pointer null
+
+=== Loi de Demeter
+
+* Propre à la POO
+* Ne vaut pas pour les DTO
+
+[source ,java]
+----
+House house = resident.getHouse();
+Owner owner = house.getOwner();
+owner.isSleeping();
+----
+
+== Build
+
+* source de verité de la construction de l'application
+* scripts de build comme maven, ant ou gradle 
+** simple
+** évident
+** minimise les concepts (entités et dépendances)
+** SRP (lignes/classes/méthodes/packages)
+** munie d’abstractions nettes
+** expressif (utilise des noms significatifs)
+** soigné
+** organisé
+
+
+== Gitflow
+
+* process de gestion des branches
+** simple
+** clair
+* Branche principale (master/main)
+** compile toujours
+** tests toujours ok
+** pas de travail en direct dessus
+
+=== Gitflow
+
+* branche de travail
+** courte
+** compile
+** tests
+** ne peut etre mergé qu'apres MR/PR
+
+=== Merge request
+
+* MR/PR
+** courte -> docn branche courte
+** moyen de faire evoluer les pratiques d'equipes
+** point de rencontre 
+** conformité clean code
+** partage de connaissance
+** gagner en qualité
+** améliorer la communication dans l’équipe (CNV, egoless)
+** c'est pas du flicage ou du jugement
+
+=== MR en Pratique
+
+* prioritaire
+* resynchro a la master reguliere
+* Vérifier que la branche compile
+* Que les tests sont passants
+* Évidement que les modifications sont conformes aux règles clean code de l’équipe
+* ralentir le développement (et sortir le nez du guidon)
+* nécessiter de gérer plusieurs branches de développement en parallèle (SRP)
+
+== Les erreurs
+
+* complexe a gerer
+** soit trop 
+** soit pas assez
+
+* Pas de code retour qui masque la nature du problème
+* Les blocs try/catch mappé avec le corps la méthode
+
+=== La nullité
+
+* Ne pas utiliser null (n'est pas un type ni un élément de l’espace du problème)
+* Ne pas retourner null: ce n'est pas a l'appelant de gerer nos incapcités 
+* Ne pas passer null en paramètre -> faire deux methodes (meme probleme que le boolean)
+* Utiliser Optional
+* Construire un objet du domaine representant la nullité
+
+=== Les exceptions
+
+* Ne pas utiliser les exceptions pour gérer un problème localement gérable par un if/then/else
+* Organiser les exception par niveau de responsabilité, 
+* Wrapper une exception (catch puis throw) est une façon de changer de niveau de responsabilité
+* Construire des exceptions du domaine 
+* Ne pas utiliser celles du framework sauf si technique
+
+== Les frontières
+
+* points critiques
+** adherance à des regles specifiques
+** comprendre son fonctionnement
+** contraintes sur la construction de l’interface
+    
+* abstraire l'interface de manière (circonscrire en marge du système)
+* minimiser les dependances
+* tests d’apprentissages 
+* definir patterns d’emplois
+
+== Les tests
+
+* Automatique : leur exécution doit être systématique lors du build
+* Complet : ils doivent garantir l’ensemble des cas d’utilisation d’une fonction
+* Répétable : leur résultat doivent être fiable
+* Indépendant : les tests doivent pouvoir être exécuté unitairement
+* Vérifier qu’une seule chose : les assertions doivent être concentré autour d’une seul préoccupation
+* Lisible : clean code -> plus évident et facile a lire que le code du programme.
+
+=== Les tests unitaires 
+
+* filet de sécurité
+* code ecrit == intention
+* maitrise de l'impact des modifications
+* TDD
+* documente le code fidelement
+
+=== Les tests d’intégration
+ 
+* verifier l'interconnexion
+** entre les elements internes d'un composant
+** entre les composant 
+* test d'interfaces
+* declinaison locale d'un UC général
+* Problematique de completude (combinatoire)
+* difficile à maintenir
+* moins prioritaire que les TU ou les tests fonctionnels
+
+=== Les tests fonctionnelles 
+
+* tests orientés utilisateurs
+* tests faisant l'abstraction de l'aspect technique
+* tests validant les UC
+* tests faisant foi de la non regression sur le systeme
+
+=== Les tests d’apprentissages 
+
+* consolident la connaissance
+* decrivent les comportements attendu d'une interface
+* documentation d'interface
+
+== La concurrence
+
+* la complexité ultime
+* a eviter
+* a isoler
+* a limiter
+* d'etre le plus soigné possible
+* risqué
+* de s'appuyer sur la literature
+
+== Ma contribution
+
+* Bushido
+** droiture/rigueur/soin
+** courage
+** bienveillance/compassion/générosité
+** politesse/respect
+** sincérité/honnêteté
+** honneur
+** loyauté
+
+== Conclusions
+
+* processus de réflexion itératif et continu sur le code
+** élégant, simple, évident
+** SOLID, SRP et munie d’abstractions nettes 
+** expressif, soigné
+** testé
+
+* processus de réflexion itératif et continu sur l’équipe
+** KISS
+** YAGNI
+** Boy-scout rule
+** mentalité d’apprentissage
+** egoless
+** definition de pratiques d'equipe
+** attitude pro
+
+
+endif::[]

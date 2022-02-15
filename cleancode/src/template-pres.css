@@ -1,0 +1,22 @@
+.reveal section img {
+    border: 0px solid #222;
+}
+
+.reveal h2 {
+    font-size: 1.4em;
+}
+
+.reveal p {
+    line-height: 1.2;
+    margin: 6px 0px;
+}
+
+.reveal {
+    font-size: 30px;
+}
+
+.reveal table th, .reveal table td {
+    font-size: 25px;
+    padding: 0px 10px 0px 20px;   
+}
+

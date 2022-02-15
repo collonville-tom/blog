@@ -10,6 +10,7 @@ Les presentations:
 * https://collonville-tom.github.io/tc-blog/slides/tc-que-faire-avec-un-neurone-0.2.0/quefaireavecunneurone.html
 * https://collonville-tom.github.io/tc-blog/slides/tc-raid-article-0.1.0/raid.html
 * https://collonville-tom.github.io/tc-blog/slides/tc-samhain-article-0.1.0/samhain.html
+* https://collonville-tom.github.io/tc-blog/slides/tc-clean-code-0.1.0/clean-code.html
 
 Versions articles:
 
