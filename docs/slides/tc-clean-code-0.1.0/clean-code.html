@@ -1,0 +1,194 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><meta name="author" content="Collonville Thomas" /><title>Clean code</title><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style" /><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport" /><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet" /><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/white.css" id="theme" /><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+/*pre.CodeRay {background-color:#f7f7f8;}*/
+.CodeRay .line-numbers{border-right:1px solid #d8d8d8;padding:0 0.5em 0 .25em}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.5em;color:rgba(0,0,0,.3)}
+.CodeRay .line-numbers strong{color:rgba(0,0,0,.4)}
+table.CodeRay{border-collapse:separate;border-spacing:0;margin-bottom:0;border:0;background:none}
+table.CodeRay td{vertical-align: top;line-height:1.45}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.line-numbers>pre{padding:0;color:rgba(0,0,0,.3)}
+table.CodeRay td.code{padding:0 0 0 .5em}
+table.CodeRay td.code>pre{padding:0}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet" /><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script><link rel="stylesheet" href="template-pres.css" /></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Clean code</h1><div class="preamble"><div class="quoteblock"><blockquote>When one teach, two learn</blockquote><div class="attribution">&#8212; Robert Heinlein</div></div></div><p class="author"><small>Collonville Thomas</small></p></section>
+<section><section id="_plan"><h2>Plan</h2><div class="ulist"><ul><li><p>Problematique du developpement logiciel</p></li><li><p>Pourquoi Clean Code</p></li><li><p>Nature du Clean Code</p></li><li><p>Les pratiques Clean Code</p><div class="ulist"><ul><li><p>SOLID</p></li><li><p>Egoless</p></li><li><p>Boyscout</p></li><li><p>Nommage</p></li></ul></div></li></ul></div></section><section id="_plan_2"><h2>Plan</h2><div class="ulist"><ul><li><p>Fonctions</p></li><li><p>Classes</p></li><li><p>Commentaires</p></li><li><p>Formatage</p></li><li><p>Demeter</p></li><li><p>Build</p></li><li><p>Gitflow</p></li><li><p>Erreurs</p></li><li><p>Frontieres</p></li><li><p>Tests</p></li></ul></div></section></section>
+<section id="_problematique_du_developpement_logiciel"><h2>Problematique du developpement logiciel</h2><div class="ulist"><ul><li><p>Long (plusieurs mois/années)</p></li><li><p>Difficile (necessite methodes, organisations, etc.)</p></li><li><p>Complexe (multiples interconnexions de systemes)</p></li><li><p>Incertain (la connaissance a toujours tendance a s&#8217;evaporer)</p></li><li><p>Implique de nombreux acteurs</p></li><li><p>Implique de nombreux vecteurs de communication</p></li></ul></div></section>
+<section id="_pourquoi_clean_code"><h2>Pourquoi Clean Code</h2><div class="ulist"><ul><li><p>Ameliorer la confiance</p></li><li><p>Garantir le fonctionnement</p></li><li><p>Maintenir la connaissance</p></li><li><p>Assurer la qualité</p></li><li><p>Péreniser</p></li><li><p>Maitriser les couts et le temps passé</p></li><li><p>Diminuer le nombre de WTF/min</p></li></ul></div></section>
+<section><section id="_clean_code"><h2>Clean Code</h2></section><section id="_nature"><h2>Nature</h2><div class="ulist"><ul><li><p>Demarche (TDD, SOLID, Yagni, KISS, etc..;)</p></li><li><p>Mindset (egoless, CNV, esprit d&#8217;equipe, pédagogie)</p></li><li><p>Tips</p></li><li><p>Travail (supplementaire)</p></li><li><p>Orienté Equipe: "Pourquoi je fais les choses d’une certaines façon et est ce que cela est profitable à l’équipe d’aujourd’hui et à celle de demain"</p></li></ul></div></section><section id="_avis_des_pro"><h2>Avis des pro</h2><div class="ulist"><ul><li><p>Bjarne Stroustrup : « élégant et efficace », « simple », « dépendance doivent être minime », « un code propre fait une chose et le fait bien »</p></li><li><p>Grady Booch : « simple et direct », « ne cache pas les intentions du concepteur », « abstractions nettes »</p></li><li><p>Dave Thomas : « peut être lu et améliorer », « TU et Test de recettes », « noms significatifs » « une seule manière de réaliser une chose », « dépendances minimales et explicites », « API claire et minimale »</p></li><li><p>Micheal Feathers : « réalisé avec soin », « pas d’amélioration possible évidente »</p></li><li><p>Ron Jeffries : « passe les tests », « n’est pas redondant », « exprime les idées de conception », « minimise les entités », « expressivité », « noms significatifs », « abstraire la spécificité »</p></li><li><p>Ward Cunningham : « chaque méthodes correspond a ce que vous attendiez »</p></li></ul></div></section><section id="_de_maniere_gnrale"><h2>De maniere générale</h2><div class="ulist"><ul><li><p>élégant</p></li><li><p>simple</p></li><li><p>évident</p></li><li><p>minimise les concepts (entités et dépendances)</p></li><li><p>SRP (lignes/classes/méthodes/packages)</p></li><li><p>munie d’abstractions nettes</p></li><li><p>expressif (utilise des noms significatifs)</p></li><li><p>soigné</p></li><li><p>organisé</p></li><li><p>contenant des tests (aussi soigné sinon plus que le code)</p></li></ul></div></section></section>
+<section id="_les_pratiques_clean_code"><h2>Les pratiques Clean Code</h2></section>
+<section><section id="_solid"><h2>SOLID</h2><div class="ulist"><ul><li><p>S pour Single Responsibility Principle</p></li><li><p>une seul préoccupation</p></li><li><p>une seule problématique</p></li><li><p>généralisable en l’adaptant au niveau d’abstraction considéré</p></li></ul></div></section><section id="_solid_2"><h2>SOLID</h2><div class="ulist"><ul><li><p>O pour Open/closed principle.</p></li><li><p>ne doit pas en permettre la modification pour respecter S.</p></li><li><p>doit permettre et faciliter son extension (héritage ou d’encapsulation)</p></li></ul></div></section><section id="_solid_3"><h2>SOLID</h2><div class="ulist"><ul><li><p>L pour Liskov principle. Rarement violé (sauf dans les langages ou l’on peut facilement manipuler la meta-structure)</p></li><li><p>les sous types d’une entité continue de respecter le contrat de base de celle ci</p></li><li><p>garanti la substitution d’une entité par l’un de ses sous types</p></li></ul></div></section><section id="_solid_4"><h2>SOLID</h2><div class="ulist"><ul><li><p>I pour Interface segregation principle.</p></li><li><p>une interface ne gere qu&#8217;un aspect</p></li><li><p>garanti la stabilité</p></li><li><p>garanti la maintenabilité</p></li><li><p>decouplage</p></li></ul></div></section><section id="_solid_5"><h2>SOLID</h2><div class="ulist"><ul><li><p>D pour Dependency inversion principle</p></li><li><p>gestion de l&#8217;orientation des dépendances</p></li><li><p>facilite la réorganisation et la substitution</p></li></ul></div></section></section>
+<section id="_ne_pas_jouer_au_heros_egoless_programming"><h2>Ne pas jouer au heros, egoless programming</h2><div class="ulist"><ul><li><p>responsabilité individuelle pour le projet</p></li><li><p>responsabilité individuelle vis a vis de l&#8217;equipe</p></li><li><p>penser equipe, toujours equipe</p></li><li><p>porter les valeurs et choix d&#8217;equipe</p></li><li><p>definition de pratiques d&#8217;equipe</p></li><li><p>ne pas diverger des pratiques d&#8217;equipe</p></li><li><p>YAGNI</p></li><li><p>KISS</p></li></ul></div></section>
+<section id="_boy_scout_rule"><h2>Boy-scout rule</h2><div class="ulist"><ul><li><p>Metaphore : « Laissez les toilettes plus propre qu’avant votre passage »</p></li><li><p>impossibilité d&#8217;etre parfait</p></li><li><p>Clean code == Process iteratif d&#8217;amelioration continu</p></li></ul></div></section>
+<section><section id="_noms_significatifs"><h2>Noms significatifs</h2><div class="ulist"><ul><li><p>élément important dans le clean code</p></li><li><p>concerne: variables, méthodes, classes package</p></li><li><p>explicite</p></li><li><p>évidente</p></li><li><p>prononçable</p></li><li><p>simple (et compatible avec la recherche)</p></li><li><p>unique conceptuellement</p></li><li><p>la lecture ou la manipulation ne soit pas un effort ni source de confusion</p></li></ul></div></section><section id="_noms_significatifs_2"><h2>Noms significatifs</h2><div class="ulist"><ul><li><p>temps d’écriture du code faible versus temps de lecture enorme</p></li><li><p>eclaire la compréhension et l&#8217;intentions</p></li><li><p>nommage = langage du DSL</p></li><li><p>distinction claire entre le technique et le fonctionnel</p></li><li><p>eviter le nomage generique (classe Manager ou Processor)</p></li><li><p>pas de codification</p></li><li><p>pas de jeu d&#8217;esprit ou d&#8217;originalité ou culturel</p></li><li><p>respect des standards</p></li></ul></div></section></section>
+<section id="_les_fonctions"><h2>Les fonctions</h2><div class="ulist"><ul><li><p>loi de Miller</p></li><li><p>un seul rôle et responsabilité</p></li><li><p>un seul niveau d’abstraction</p></li><li><p>organisées des plus abstraites au plus spécifiques</p></li><li><p>contenu organisé par groupe logique</p></li><li><p>déclarations de variable au plus proche de leur utilisation</p></li><li><p>eviter le switch cases (structure lourde)</p></li><li><p>minimiser le nombre d&#8217;args (signe d&#8217;un souvis de responsabilité)</p></li></ul></div></section>
+<section><section id="_les_classes"><h2>Les classes</h2><div class="ulist"><ul><li><p>simples</p></li><li><p>petites</p></li><li><p>une seule responsabilité</p></li><li><p>utilisation de patterns (complexité, evolutivité)</p></li><li><p>factoriser le code</p></li><li><p>supprimer le code inutile &#8594; Git existe</p></li></ul></div></section><section id="_les_classes_2"><h2>Les classes</h2><div class="ulist"><ul><li><p>dissociassion des préoccupations</p><div class="ulist"><ul><li><p>démarrage</p></li><li><p>fonctionnement nominal</p></li><li><p>fonctionnement en cas d’erreur</p></li><li><p>fonctionnement en cas arrêt</p></li></ul></div></li></ul></div></section></section>
+<section id="_return_continue_et_break"><h2>return, continue et break</h2><div class="ulist"><ul><li><p>ne pas utiliser continue et break</p></li><li><p>ne pas répéter dans une meme méthode le mot clef return</p><div class="ulist"><ul><li><p>vrai si la methode est longue</p></li><li><p>sinon pourquoi pas si ca clarifie</p></li></ul></div></li></ul></div></section>
+<section><section id="_les_commentaires"><h2>Les commentaires</h2><div class="ulist"><ul><li><p>la problématique du commentaire est un chapitre complet du livre Clean code</p></li><li><p>Ce chapitre commence par :</p><div class="literalblock"><div class="content"><pre>Ne commentez pas le mauvais code, reecrivez le.</pre></div></div></li><li><p>utile que lorsqu’il pallie notre incapacité à exprimer notre intention par le code</p></li><li><p>Ne pas laisser du code commenté, git existe</p></li><li><p>maintenance illusoire</p></li><li><p>confiance impossible</p></li><li><p>implique une facon de faire</p></li><li><p>mensonge et point de vue</p></li><li><p>alourdissement de la lecture</p></li></ul></div></section><section id="_les_commentaires_2"><h2>Les commentaires</h2><div class="ulist"><ul><li><p>de manière général:</p><div class="ulist"><ul><li><p>langage formel versus langage naturel</p></li><li><p>inutile</p></li><li><p>revoir le code</p></li><li><p>si utile &#8594; c’est un pansement</p></li><li><p>créer une fonction bien nommé pour wrapper</p></li></ul></div></li></ul></div></section></section>
+<section id="_la_java_doc"><h2>La java doc</h2><div class="ulist"><ul><li><p>type de documention specfique</p><div class="ulist"><ul><li><p>a destination de developpeurs</p></li><li><p>objectif d&#8217;utilisation d&#8217;un framework</p></li><li><p>pas un objectif de documentation pour un mainteneur (le code fait foi)</p></li></ul></div></li></ul></div></section>
+<section id="_le_formatage"><h2>Le formatage</h2><div class="ulist"><ul><li><p>Homogéne (organisation package/classe/methode)</p></li><li><p>le diable se cache dans les details</p></li><li><p>s&#8217;appuyer sur les standards</p></li><li><p>l&#8217;objectif est la lisibilité</p></li><li><p>Utiliser les memes patterns d&#8217;ecriture</p></li><li><p>pas d&#8217;habitudes individuelles</p></li></ul></div></section>
+<section><section id="_loi_de_demeter"><h2>Loi de Demeter</h2><div class="paragraph"><p>La loi de Demeter stipule qu’un objet ou fonction n’a le droit de manipuler
+que les éléments qu’il est sensé directement connaitre.</p></div><div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">resident.getHouse().getOwner().isSleeping()</code></pre></div></div><div class="ulist"><ul><li><p>limiter la dépendance entre les entités</p></li><li><p>violation de l&#8217;encapsulation</p></li><li><p>lecture des log en cas de pointer null</p></li></ul></div></section><section id="_loi_de_demeter_2"><h2>Loi de Demeter</h2><div class="ulist"><ul><li><p>Propre à la POO</p></li><li><p>Ne vaut pas pour les DTO</p></li></ul></div>
+<div class="listingblock"><div class="content"><pre class="CodeRay"><code class="java language-java">House house = resident.getHouse();
+<span class="predefined-type">Owner</span> owner = house.getOwner();
+owner.isSleeping();</code></pre></div></div></section></section>
+<section id="_build"><h2>Build</h2><div class="ulist"><ul><li><p>source de verité de la construction de l&#8217;application</p></li><li><p>scripts de build comme maven, ant ou gradle</p><div class="ulist"><ul><li><p>simple</p></li><li><p>évident</p></li><li><p>minimise les concepts (entités et dépendances)</p></li><li><p>SRP (lignes/classes/méthodes/packages)</p></li><li><p>munie d’abstractions nettes</p></li><li><p>expressif (utilise des noms significatifs)</p></li><li><p>soigné</p></li><li><p>organisé</p></li></ul></div></li></ul></div></section>
+<section><section id="_gitflow"><h2>Gitflow</h2><div class="ulist"><ul><li><p>process de gestion des branches</p><div class="ulist"><ul><li><p>simple</p></li><li><p>clair</p></li></ul></div></li><li><p>Branche principale (master/main)</p><div class="ulist"><ul><li><p>compile toujours</p></li><li><p>tests toujours ok</p></li><li><p>pas de travail en direct dessus</p></li></ul></div></li></ul></div></section><section id="_gitflow_2"><h2>Gitflow</h2><div class="ulist"><ul><li><p>branche de travail</p><div class="ulist"><ul><li><p>courte</p></li><li><p>compile</p></li><li><p>tests</p></li><li><p>ne peut etre mergé qu&#8217;apres MR/PR</p></li></ul></div></li></ul></div></section><section id="_merge_request"><h2>Merge request</h2><div class="ulist"><ul><li><p>MR/PR</p><div class="ulist"><ul><li><p>courte &#8594; docn branche courte</p></li><li><p>moyen de faire evoluer les pratiques d&#8217;equipes</p></li><li><p>point de rencontre</p></li><li><p>conformité clean code</p></li><li><p>partage de connaissance</p></li><li><p>gagner en qualité</p></li><li><p>améliorer la communication dans l’équipe (CNV, egoless)</p></li><li><p>c&#8217;est pas du flicage ou du jugement</p></li></ul></div></li></ul></div></section><section id="_mr_en_pratique"><h2>MR en Pratique</h2><div class="ulist"><ul><li><p>prioritaire</p></li><li><p>resynchro a la master reguliere</p></li><li><p>Vérifier que la branche compile</p></li><li><p>Que les tests sont passants</p></li><li><p>Évidement que les modifications sont conformes aux règles clean code de l’équipe</p></li><li><p>ralentir le développement (et sortir le nez du guidon)</p></li><li><p>nécessiter de gérer plusieurs branches de développement en parallèle (SRP)</p></li></ul></div></section></section>
+<section><section id="_les_erreurs"><h2>Les erreurs</h2><div class="ulist"><ul><li><p>complexe a gerer</p><div class="ulist"><ul><li><p>soit trop</p></li><li><p>soit pas assez</p></li></ul></div></li><li><p>Pas de code retour qui masque la nature du problème</p></li><li><p>Les blocs try/catch mappé avec le corps la méthode</p></li></ul></div></section><section id="_la_nullit"><h2>La nullité</h2><div class="ulist"><ul><li><p>Ne pas utiliser null (n&#8217;est pas un type ni un élément de l’espace du problème)</p></li><li><p>Ne pas retourner null: ce n&#8217;est pas a l&#8217;appelant de gerer nos incapcités</p></li><li><p>Ne pas passer null en paramètre &#8594; faire deux methodes (meme probleme que le boolean)</p></li><li><p>Utiliser Optional</p></li><li><p>Construire un objet du domaine representant la nullité</p></li></ul></div></section><section id="_les_exceptions"><h2>Les exceptions</h2><div class="ulist"><ul><li><p>Ne pas utiliser les exceptions pour gérer un problème localement gérable par un if/then/else</p></li><li><p>Organiser les exception par niveau de responsabilité,</p></li><li><p>Wrapper une exception (catch puis throw) est une façon de changer de niveau de responsabilité</p></li><li><p>Construire des exceptions du domaine</p></li><li><p>Ne pas utiliser celles du framework sauf si technique</p></li></ul></div></section></section>
+<section id="_les_frontires"><h2>Les frontières</h2><div class="ulist"><ul><li><p>points critiques</p><div class="ulist"><ul><li><p>adherance à des regles specifiques</p></li><li><p>comprendre son fonctionnement</p></li><li><p>contraintes sur la construction de l’interface</p></li></ul></div></li><li><p>abstraire l&#8217;interface de manière (circonscrire en marge du système)</p></li><li><p>minimiser les dependances</p></li><li><p>tests d’apprentissages</p></li><li><p>definir patterns d’emplois</p></li></ul></div></section>
+<section><section id="_les_tests"><h2>Les tests</h2><div class="ulist"><ul><li><p>Automatique : leur exécution doit être systématique lors du build</p></li><li><p>Complet : ils doivent garantir l’ensemble des cas d’utilisation d’une fonction</p></li><li><p>Répétable : leur résultat doivent être fiable</p></li><li><p>Indépendant : les tests doivent pouvoir être exécuté unitairement</p></li><li><p>Vérifier qu’une seule chose : les assertions doivent être concentré autour d’une seul préoccupation</p></li><li><p>Lisible : clean code &#8594; plus évident et facile a lire que le code du programme.</p></li></ul></div></section><section id="_les_tests_unitaires"><h2>Les tests unitaires</h2><div class="ulist"><ul><li><p>filet de sécurité</p></li><li><p>code ecrit == intention</p></li><li><p>maitrise de l&#8217;impact des modifications</p></li><li><p>TDD</p></li><li><p>documente le code fidelement</p></li></ul></div></section><section id="_les_tests_d_intgration"><h2>Les tests d’intégration</h2><div class="ulist"><ul><li><p>verifier l&#8217;interconnexion</p><div class="ulist"><ul><li><p>entre les elements internes d&#8217;un composant</p></li><li><p>entre les composant</p></li></ul></div></li><li><p>test d&#8217;interfaces</p></li><li><p>declinaison locale d&#8217;un UC général</p></li><li><p>Problematique de completude (combinatoire)</p></li><li><p>difficile à maintenir</p></li><li><p>moins prioritaire que les TU ou les tests fonctionnels</p></li></ul></div></section><section id="_les_tests_fonctionnelles"><h2>Les tests fonctionnelles</h2><div class="ulist"><ul><li><p>tests orientés utilisateurs</p></li><li><p>tests faisant l&#8217;abstraction de l&#8217;aspect technique</p></li><li><p>tests validant les UC</p></li><li><p>tests faisant foi de la non regression sur le systeme</p></li></ul></div></section><section id="_les_tests_d_apprentissages"><h2>Les tests d’apprentissages</h2><div class="ulist"><ul><li><p>consolident la connaissance</p></li><li><p>decrivent les comportements attendu d&#8217;une interface</p></li><li><p>documentation d&#8217;interface</p></li></ul></div></section></section>
+<section id="_la_concurrence"><h2>La concurrence</h2><div class="ulist"><ul><li><p>la complexité ultime</p></li><li><p>a eviter</p></li><li><p>a isoler</p></li><li><p>a limiter</p></li><li><p>d&#8217;etre le plus soigné possible</p></li><li><p>risqué</p></li><li><p>de s&#8217;appuyer sur la literature</p></li></ul></div></section>
+<section id="_ma_contribution"><h2>Ma contribution</h2><div class="ulist"><ul><li><p>Bushido</p><div class="ulist"><ul><li><p>droiture/rigueur/soin</p></li><li><p>courage</p></li><li><p>bienveillance/compassion/générosité</p></li><li><p>politesse/respect</p></li><li><p>sincérité/honnêteté</p></li><li><p>honneur</p></li><li><p>loyauté</p></li></ul></div></li></ul></div></section>
+<section id="_conclusions"><h2>Conclusions</h2><div class="ulist"><ul><li><p>processus de réflexion itératif et continu sur le code</p><div class="ulist"><ul><li><p>élégant, simple, évident</p></li><li><p>SOLID, SRP et munie d’abstractions nettes</p></li><li><p>expressif, soigné</p></li><li><p>testé</p></li></ul></div></li><li><p>processus de réflexion itératif et continu sur l’équipe</p><div class="ulist"><ul><li><p>KISS</p></li><li><p>YAGNI</p></li><li><p>Boy-scout rule</p></li><li><p>mentalité d’apprentissage</p></li><li><p>egoless</p></li><li><p>definition de pratiques d&#8217;equipe</p></li><li><p>attitude pro</p></li></ul></div></li></ul></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: false,
+  // Push each slide change to the browser history
+  history: false,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'white',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'fade',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 960,
+  height: 700,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>
