@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: manager-service
+  namespace: spring-batch
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: NodePort
+  selector:
+    selector_label: sb-manager

@@ -1,0 +1,22 @@
+spring:
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: admin
+    password: admin
+
+
+  datasource:
+    url: jdbc:postgresql://batch-postgres:5432/batch?tcpKeepAlive=true
+    username: admin
+    password: admin
+    initialization-mode: always
+    driver-class-name: org.postgresql.Driver
+    continue-on-error: true
+
+
+
+  batch:
+    initialize-schema: always
+    job:
+      enabled: false

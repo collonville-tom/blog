@@ -1,0 +1,32 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: worker-deployment
+  namespace: spring-batch
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      selector_label: sb-worker
+  template:
+    metadata:
+      name: worker-pod
+      labels:
+        selector_label: sb-worker
+    spec:
+      containers:
+        - name: worker-pod
+          image: "mahasiah:32188/spring-batch-worker:latest"
+          imagePullPolicy: Always
+          env:
+            - name: JAR_NAME
+              value: "worker-0.0.1-SNAPSHOT.jar"
+          volumeMounts:
+            - name: worker-config
+              mountPath: /app/config/application-docker.yml
+              subPath: application-docker.yml
+              readOnly: true
+      volumes:
+        - name: worker-config
+          configMap:
+            name: worker-config

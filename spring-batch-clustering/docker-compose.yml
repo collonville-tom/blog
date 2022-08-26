@@ -1,0 +1,97 @@
+version: "3"
+services:
+
+  manager:
+    container_name: manager
+    build:
+      context: ./manager
+    image: manager:latest
+    environment:
+      JAR_NAME: manager-0.0.1-SNAPSHOT.jar
+    volumes:
+      - "./log/manager:/tmp"
+    depends_on:
+      - batch-init-rabbitmq
+    ports:
+      - "8080:8080"
+
+
+  worker-1:
+    container_name: worker-1
+    build:
+      context: ./worker
+    image: worker:latest
+    environment:
+      JAR_NAME: worker-0.0.1-SNAPSHOT.jar
+    volumes:
+      - "./log/worker-1:/tmp"
+    depends_on:
+      - manager
+
+
+  worker-2:
+    container_name: worker-2
+    build:
+      context: ./worker
+    image: worker:latest
+    environment:
+      JAR_NAME: worker-0.0.1-SNAPSHOT.jar
+    volumes:
+      - "./log/worker-2:/tmp"
+    depends_on:
+      - manager
+
+
+  worker-3:
+    container_name: worker-3
+    build:
+      context: ./worker
+    image: worker:latest
+    environment:
+      JAR_NAME: worker-0.0.1-SNAPSHOT.jar
+    volumes:
+      - "./log/worker-3:/tmp"
+    depends_on:
+      - manager
+
+
+  rabbitmq:
+    image: 'bitnami/rabbitmq:3.8.17'
+    container_name: rabbitmq
+    hostname: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+
+
+  batch-init-rabbitmq:
+    container_name: batch-init-rabbitmq
+    image: 'softonic/rabbitmqadmin:latest'
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    volumes:
+      - ./rabbitmq:/home:Z
+    depends_on:
+      - rabbitmq
+    command: "/home/rabbit.init.sh"
+
+  batch-postgres:
+    container_name: batch-postgres
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=batch
+    volumes:
+      - "./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - "./postgres/sql.script:/tmp"
+    #      - "/var/lib/postgresql/data"
+    expose:
+      - "5432"
+    ports:
+      - "8082:5432"

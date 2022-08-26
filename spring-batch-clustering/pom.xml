@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+	<artifactId>module</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>module</name>
+	<description>Spring Batch Partioning and Chuncking</description>
+    <packaging>pom</packaging>
+    <properties>
+        <java.version>11</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.resources.sourceEncoding>UTF-8</project.resources.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
+    <modules>
+        <module>manager</module>
+        <module>worker</module>
+    </modules>
+</project>
