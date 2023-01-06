@@ -1,0 +1,22 @@
+dn: cn=monschema,cn=schema,cn=config
+objectClass: olcSchemaConfig
+cn: monschema
+olcAttributeTypes: ( 1.2.840.113556.1.8000.2554.10
+        NAME 'monnom'
+        DESC 'le nom'
+        EQUALITY caseExactMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+        SINGLE-VALUE )
+olcAttributeTypes: ( 1.2.840.113556.1.8000.2554.20
+        NAME 'monprenom'
+        DESC 'le prenom'
+        EQUALITY caseExactMatch
+        SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+        SINGLE-VALUE )
+olcObjectClasses: ( 1.2.840.113556.1.8000.2554.100
+        NAME 'mapersonne'
+        DESC 'personne'
+        SUP top
+        STRUCTURAL
+        MUST ( cn $ monnom )
+        MAY ( monprenom ) )

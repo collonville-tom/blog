@@ -1,0 +1,1 @@
+ldapadd -Y EXTERNAL -H ldapi:/// -f add.ldif

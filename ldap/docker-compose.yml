@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+
+  tc-openldap-manager:
+    image: osixia/phpldapadmin:0.9.0
+    ports:
+      - 6443:443
+      - 6080:80
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=tc-openldap
+      - PHPLDAPADMIN_HTTPS=false
+      - PHPLDAPADMIN_TRUST_PROXY_SSL=true
+
+  tc-openldap:
+    image: osixia/openldap:1.5.0
+    environment:
+      - LDAP_ORGANISATION=ToutPourDesClous
+      - LDAP_DOMAIN=tpdc.org
+    volumes:
+      - "./ldap-config/var.lib.ldap:/var/lib/ldap"
+      - "./ldap-config/etc.ldap.ldap.d:/etc/ldap/slapd.d"
+      - "./:/tmp"
