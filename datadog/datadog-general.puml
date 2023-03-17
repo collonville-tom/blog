@@ -1,0 +1,27 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(OnPremOps, "OnPremOps")
+Person(CloudOps, "CloudOps")
+
+System(EnterpriseCloudServer,"EnterpriseCloudServer\n(AWS/Azure/GCP)")
+System(EnterpriseOnPremServer,"EnterpriseOnPremServer\n(VM/Container)")
+
+System_Boundary(datadog, "DataDog") {
+    SystemDb(DatadogDB,"DatadogDB")
+    System(DatadogDashboard,"DatadogDashboard")
+}
+
+Rel_U(DatadogDashboard,DatadogDB,"use")
+
+Rel_R(EnterpriseOnPremServer,DatadogDB,"metrics")
+Rel_L(EnterpriseCloudServer,DatadogDB,"metrics")
+
+
+Rel_R(OnPremOps,DatadogDashboard,"visualize")
+Rel(CloudOps,DatadogDashboard,"visualize")
+
+Rel_U(OnPremOps,EnterpriseOnPremServer,"manage")
+Rel_U(CloudOps,EnterpriseCloudServer,"manage")
+
+@enduml
