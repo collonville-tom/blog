@@ -1,0 +1,43 @@
+@startuml
+!theme plain
+
+== Resource Registration Endpoint ==
+
+ResourceServer -> AuthorisationServer : CreateResource
+AuthorisationServer --> ResourceServer: 201
+
+group optional
+  ResourceServer -> AuthorisationServer : Get/Update/Delete/ListResource
+end
+
+group UMA Grant
+
+ResourceOwner -> AuthorisationServer : setPolicy
+
+== Permission Endpoint ==
+
+Client -> ResourceServer: Rqst resource
+ResourceServer -> AuthorisationServer: Request permissions
+AuthorisationServer --> ResourceServer: permission ticket
+ResourceServer --> Client: 401 with permission ticket
+
+== Core Flow ==
+
+Client -> AuthorisationServer: Access token (RPT) request\nwith permission ticket,\nclaim token (push claims)
+AuthorisationServer -> Client: 403 with permission ticket
+
+Client -> RequestingParty: redirect with permission\n ticket
+RequestingParty -> AuthorisationServer: auth and get permission
+AuthorisationServer -> RequestingParty: redicrect with permission
+RequestingParty -> Client: follow redirection
+
+== Token Introspection Endpoint ==
+
+Client -> ResourceServer: ResourceRequest with RPT
+ResourceServer -> AuthorisationServer: Request to introspect token
+AuthorisationServer --> ResourceServer: Response with token
+ResourceServer -> Client : ProtectedResource
+
+end
+
+@enduml

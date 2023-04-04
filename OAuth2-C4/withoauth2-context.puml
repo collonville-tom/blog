@@ -1,0 +1,16 @@
+@startuml
+'fig 2
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(resourceOwner, "Resource Owner")
+
+System(client,"Client")
+System(resourceServer,"Resource Server")
+System(authServer,"Authorization Server")
+
+Rel_R(resourceOwner, client, "provide", "Client credential")
+Rel_D(client, resourceServer, "consume", "Client token")
+Rel_R(client, authServer, "auth flow", "Client credential")
+
+
+@enduml

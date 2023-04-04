@@ -1,0 +1,31 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container(front, "UI de Service")
+ContainerDb(db, "Base de données du service")
+
+System(backEnterprise, "Module backend de l'entreprise", "Gère les services internes de l'entreprise")
+System(auth, "Module de sécurité", "Protège les données des clients")
+
+Container_Boundary(back, "Backend du service") {
+
+  Component(controller, "Controller")
+  Component(service, "service")
+  Component(repositoryPostgres, "Repository Postgres")
+  Component(repositoryAuth, "Repository Auth Client Http")
+  Component(repositoryBack, "Repository Back Client Http")
+
+}
+
+Rel(front,controller,"https")
+Rel(repositoryPostgres,db,"sql")
+Rel(repositoryAuth,auth,"https")
+Rel(repositoryBack,backEnterprise,"https")
+
+Rel(controller,service, "Use")
+Rel(service,repositoryPostgres, "Use")
+Rel(service,repositoryAuth, "Use")
+Rel(service,repositoryBack, "Use")
+
+@enduml
+

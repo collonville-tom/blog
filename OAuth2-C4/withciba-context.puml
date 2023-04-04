@@ -1,0 +1,22 @@
+@startuml
+'fig 4
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+
+Person(resourceOwner, "Resource Owner")
+
+System(client,"Client")
+System(resourceServer,"Resource Server")
+System(authServer,"Authorization Server")
+
+System(authDev,"Authentification Device")
+
+Rel_R(resourceOwner, client, "provide", "Client credential")
+Rel_D(client, resourceServer, "consume", "Client token")
+Rel_R(client, authServer, "ciba flow", "Client credential")
+
+Rel_U(authServer, authDev, "request for a user interraction", "relying party")
+Rel(authDev, resourceOwner, "user interraction", "agreement")
+
+
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+'fig 5
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+'Person(requestingParty, "Requesting Party")
+
+System(client,"Client")
+System(resourceServer,"Resource Server")
+System(authServer,"Authorisation Server")
+
+'Person(resourceOwner, "Resource Owner")
+
+
+'Rel(resourceServer, authServer, "Create Resource", "Resource Registration")
+'Rel(authServer, resourceServer, "201", "Resource Registration")
+'Rel(resourceOwner, authServer, "SetPolicy", "Resource Registration")
+
+'Rel(client, resourceServer, "Request Resource","Permission Endpoint")
+'Rel(resourceServer, authServer, "Request Resource","Permission Endpoint")
+'Rel(authServer, resourceServer, "Permission ticket","Permission Endpoint")
+'Rel(resourceServer, client, "401 with Permission ticket","Permission Endpoint")
+
+'Rel_R(client, authServer, "Access token request (RPT)","Core flow")
+'Rel(authServer,client , "403 with Permission ticket","Core flow")
+'Rel(client,requestingParty , "redirect with permission ticket","Core flow")
+'Rel(requestingParty,authServer , "authorisation","Core flow")
+'Rel(authServer,requestingParty, "redirect with permission","Core flow")
+'Rel(requestingParty,client, "follow redirection","Core flow")
+
+Rel(client,resourceServer, "resource request with RPT","Token Introspection Endpoint")
+Rel(resourceServer,authServer, "token introspection request","Token Introspection Endpoint")
+Rel(authServer,resourceServer, "token introspection response","Token Introspection Endpoint")
+Rel(resourceServer,client, "protected resource","Token Introspection Endpoint")
+
+@enduml

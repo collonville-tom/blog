@@ -1,0 +1,19 @@
+@startuml
+
+'fig 5
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+
+System(client,"Client")
+System(authServer,"Authorization Server")
+System(authDev,"Authentification Device")
+
+Rel(client, authServer, "CIBA Request")
+Rel_U(authServer, client, "CIBA Response")
+
+Rel(authServer, authDev, "user interaction","ASYNC")
+Rel(client, authServer, "token request")
+
+Rel(authServer, client, "token response")
+  
+@enduml

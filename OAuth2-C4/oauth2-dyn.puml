@@ -1,0 +1,17 @@
+@startuml
+'fig 3
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Dynamic.puml
+
+Person(resourceOwner, "Resource Owner")
+
+System(client,"Client")
+System(resourceServer,"Resource Server")
+System(authServer,"Authorization Server")
+
+Rel_L(client,resourceOwner , "Authorization Request")
+Rel_R(resourceOwner, client, "Authorization Grant")
+Rel_R(client, authServer, "Authorization Grant")
+Rel_L(authServer, client,  "Access Token")
+Rel_D(client, resourceServer, "Access Token")
+Rel_U(resourceServer, client, "Protected Resource")
+@enduml

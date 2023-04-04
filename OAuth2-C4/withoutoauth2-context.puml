@@ -1,0 +1,18 @@
+@startuml
+'fig 1
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+Person(user, "User")
+
+System(service1,"Service 1")
+System(service2,"Service 2")
+
+Rel_R(user, service1, "configure", "service 2 credentials")
+Rel_R(user, service1, "connect", "service 1 credentials")
+
+Rel_D(user, service2, "connect", "service 2 credentials")
+Rel_D(service1, service2, "use", "service 2 credentials")
+
+
+
+@enduml
