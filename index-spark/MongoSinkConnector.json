@@ -1,0 +1,14 @@
+{
+    "name": "MongoSinkConnector",
+    "config": {
+        "connector.class": "com.mongodb.kafka.connect.MongoSinkConnector",
+        "database": "mongodb",
+        "tasks.max": "1",
+        "connection.uri": "mongodb://root:root@mongo:27017/?authSource=admin&authMechanism=SCRAM-SHA-256",
+        "collection": "output_index",
+        "topics": "output_index",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+        "value.converter.schemas.enable": false
+    }
+}

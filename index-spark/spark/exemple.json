@@ -1,0 +1,15 @@
+{
+    "_id": "64253fcad87d16a8dbebb0b2",
+    "key": "d08bd946-55ee-4df8-ab88-0b24d7d5a090|index1|diffindex|minute",
+    "moment": "2023-03-30-07:52:42",
+    "val": {
+        "first": {
+            "value": 2103.2184722754455,
+            "timestamp": 1.680162762878399E9
+        },
+        "last": {
+            "value": 2111.1548044045503,
+            "timestamp": 1.680162762897154E9
+        }
+    }
+}

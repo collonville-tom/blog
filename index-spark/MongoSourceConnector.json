@@ -1,0 +1,15 @@
+{
+    "name": "MongoSourceConnector",
+    "config": {
+        "connector.class": "com.mongodb.kafka.connect.MongoSourceConnector",
+        "database": "mongodb",
+        "startup.mode": "copy_existing",
+        "tasks.max": "1",
+        "connection.uri": "mongodb://root:root@mongo:27017/?authSource=admin&authMechanism=SCRAM-SHA-256",
+        "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "value.converter": "org.apache.kafka.connect.storage.StringConverter",
+        "topic.mapper": "com.mongodb.kafka.connect.source.topic.mapping.DefaultTopicMapper",
+        "collection": "index",
+        "publish.full.document.only": "true"
+    }
+}

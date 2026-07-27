@@ -1,0 +1,32 @@
+micronaut:
+  security:
+    enabled: true
+    default-group: no-roles
+    token:
+    jwt:
+      signatures:
+        secret:
+          generator:
+            secret: othersecret
+akhq:
+  security:
+    enabled: true
+    default-group: no-roles
+    basic-auth:
+      - username: admin
+        password: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+        groups:
+          - admin
+  server:
+    access-log:
+      enabled: true
+      name: org.akhq.log.access
+  connections:
+    local:
+      properties:
+        bootstrap.servers: "kafka-cluster:9092"
+#      schema-registry:
+#        url: "http://kafka-cluster:8082"
+#      connect:
+#        - name: "connect"
+#          url: "http://kafka-cluster:8083"

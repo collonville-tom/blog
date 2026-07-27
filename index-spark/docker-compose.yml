@@ -1,0 +1,63 @@
+
+services:
+
+
+  mongo:
+    image: docker.io/library/mongo:6.0.24 
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    command: --config /app/mongod.conf
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo:/app
+      - ./secrets:/secrets
+
+
+  mongo-express:
+    image: docker.io/library/mongo-express:latest
+    restart: always
+    ports:
+      - 8090:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=root
+      - ME_CONFIG_MONGODB_URL=mongodb://root:root@mongo:27017
+
+  kafka-cluster:
+    image: landoop/fast-data-dev:3.6
+    environment:
+      ADV_HOST: "kafka-cluster"
+      RUNTESTS: 0 # Disable Running tests so the cluster starts faster
+    ports:
+      - 2181:2181 # Zookeeper
+      - 3030:3030 # Landoop UI
+      - 8081-8083:8081-8083 # REST Proxy, Schema Registry, Kafka Connect ports
+      - 9581-9585:9581-9585 # JMX Ports
+      - 9092:9092 # Kafka Broker
+    volumes:
+      - "./kafka/connect/mongo:/connectors/mongo"
+
+  spark-cluster:
+    image: jupyter/all-spark-notebook:2023-10-20
+    #    user: root
+    ports:
+      - 8888:8888
+      - 4040:4040
+    #    environment:
+    #      - GRANT_SUDO=yes
+    volumes:
+      - ./spark/scripts:/home/jovyan/work
+
+  akhq:
+    image: tchiotludo/akhq:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./akhq/application.yml:/app/application.yml
+
+networks:
+  tc-infra:
+    driver: overlay
+    attachable: true
